@@ -3,7 +3,9 @@ window.addEventListener('keydown', (e) => {
     `audio[data-key="${e.key.toUpperCase()}"]`
   );
   const key = document.querySelector(`div[data-key="${e.key.toUpperCase()}"]`);
-  key.classList.add('playing');
+  if(key){
+    key.classList.add('playing');
+  }
 
   if (!audio) return;
   audio.currentTime = 0;
@@ -14,7 +16,6 @@ const keys = document.querySelectorAll('.key');
 keys.forEach(key=>{
     key.addEventListener('transitionend', (e)=>{
         if(e.propertyName !== 'transform') return;
-        console.log(this);
-        this.classList.remove('playing');
+        e.target.classList.remove('playing');
     });
 })
